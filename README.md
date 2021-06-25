@@ -1,0 +1,2 @@
+#ratePoint
+This is a jquery dependent file that generate a radial rate bar using attributes along with svg tags. The rate bar also responds to updates and uses a roll back or roll forward to move the current rate to the newly updated rate.
