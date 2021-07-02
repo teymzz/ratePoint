@@ -192,7 +192,9 @@
 
         <script src="js/ratePoint.js"></script>
         <script>
-            autoRatePoint(); //initialize ratepointer
+            setTimeout(() => {
+                autoRatePoint(); //initialize ratepointer
+            }, 1500);
 
             //auto update sample 1 on interval basis
             let datas = [10, 50, 30, 70, 45, 10];

@@ -671,7 +671,7 @@ $(".radial").animeRateBar({runtime:5000,
  colors:["rgb(207, 40, 4)",'rgb(207, 126, 4)','rgb(91, 200, 91)','rgb(207, 204, 4)','rgb(38, 207, 4)'],
  animVal: "stroke-dasharray",
  addUnit: "+",
- addLabel: "<br><text class='mybox font8 calibri'>Andla Rate Bar</text>"
+ addLabel: "<br><text class='mybox font8 calibri'>Rate Bar</text>"
 }); 
 
 sample html description only using autoRatePoint() as automatic loader
@@ -683,7 +683,7 @@ sample html description only using autoRatePoint() as automatic loader
        <item 
            data-func="prodata" data-start="0" data-end="25"data-mark="50"  
            data-mirror="x,y" data-angle = "90" 
-           data-unit='%' data-label="Andla Rate Bar" data-time="7000"
+           data-unit='%' data-label="Rate Bar" data-time="7000"
            data-bkpoints="0:20:50:70:100"
            data-bkcolors="rgb(207, 40, 4):rgb(207, 126, 4):rgb(91, 200, 91):rgb(207, 204, 4):rgb(38, 207, 4)"
            data-bkclass ="low:normal:medium:high:complete]"
@@ -707,7 +707,7 @@ prevent auto load by setting data-run as none
     $.fn.animeRateLine = function(options) {
 
         //defaults settings
-        var defaults = {
+        let defaults = {
             obData: null,
             breakPoints: null,
             classes: null,
@@ -719,10 +719,17 @@ prevent auto load by setting data-run as none
             startPoint: 0,
         }
 
-        //real settings
-        settings = $.extend(defaults, options);
 
-        runRate(settings);
+
+        return this.each(function(index, item) {
+            let settings = $.extend({}, defaults, options);
+            //real settings
+
+            settings.thisElement = $(this);
+            runRate(settings);
+        })
+
+
     }
 
 
@@ -798,7 +805,6 @@ prevent auto load by setting data-run as none
                                 //case1
 
                                 if (breakVal <= realRate) {
-                                    console.log(breakVal, realRate.toFixed(1))
                                     if (breakClasses[index] != null) {
                                         obClass = breakClasses[index];
                                         progressBar.attr({ "data-class": obClass })
